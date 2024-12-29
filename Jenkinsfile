@@ -9,8 +9,8 @@ pipeline {
         stage('Build image and upload to dockerhub') {
             steps {
                 withDockerRegistry(credentialsId: '22127251_dockerhub', url: 'https://index.docker.io/v1/') {
-                    bat 'docker build -t 22127251/jenkin_dockerhub_test2 .'
-                    bat 'docker push 22127251/jenkin_dockerhub_test2'
+                    bat 'docker build -t 22127251/cicd_test_0 .'
+                    bat 'docker push 22127251/cicd_test_0'
                 }
             }
         }
