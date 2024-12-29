@@ -14,23 +14,23 @@ pipeline {
                 }
             }
         }
-        // stage('Check and stop existing container') {
-        //     steps {
-        //         script {
-        //             def containerId = bat(script: '@docker ps -q -f publish=3000', returnStdout: true).trim()
-        //             echo "Container ID: ${containerId}"
-        //             if (containerId) {
-        //                 bat "docker stop ${containerId}"
-        //                 bat "docker rm ${containerId}"
-        //             }
-        //         }
-        //     }
-        // }
-        // stage('Pull image from dockerhub and run in container') {
-        //     steps {
-        //         bat 'docker pull 22127251/cicd_test_0'
-        //         bat 'docker run -d -p 3000:80 22127251/cicd_test_0'
-        //     }
-        // }        
+        stage('Check and stop existing container') {
+            steps {
+                script {
+                    def containerId = bat(script: '@docker ps -q -f publish=3000', returnStdout: true).trim()
+                    echo "Container ID: ${containerId}"
+                    if (containerId) {
+                        bat "docker stop ${containerId}"
+                        bat "docker rm ${containerId}"
+                    }
+                }
+            }
+        }
+        stage('Pull image from dockerhub and run in container') {
+            steps {
+                bat 'docker pull 22127251/cicd_test_0'
+                bat 'docker run -d -p 3000:80 22127251/cicd_test_0'
+            }
+        }        
     }
 }
