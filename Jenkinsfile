@@ -20,7 +20,7 @@ pipeline {
                     def containerId = bat(script: '@docker ps -q -f publish=3000', returnStdout: true).trim()
                     echo "Container ID: ${containerId}"
                     if (containerId) {
-                        bat "docker rm -f ${containerId}"
+                        bat "docker stop ${containerId}"
                     }
                 }
             }
